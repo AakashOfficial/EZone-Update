@@ -12,6 +12,9 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.tyagi.project.OnlineShopping.dao.UserDAO;
+import com.tyagi.project.OnlineShopping.model.UserRegister;
+
 @Configuration
 @ComponentScan("com.tyagi.OnlineShopping")
 @EnableTransactionManagement
@@ -36,7 +39,6 @@ public class DatabaseConfiguration {
 	public SessionFactory getSessionFactory(DataSource dataSource)
 	{
 		System.out.println("---Hibernate Properties----");
-		System.out.println("---Hibernate Properties Creation----");
 		Properties prop=new Properties();
 		prop.setProperty("hibernate.hbm2ddl.auto", "update");
 		prop.put("hibernate.show_sql", "true"); //optional
@@ -47,21 +49,33 @@ public class DatabaseConfiguration {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(getH2DataSource());
 		sessionBuilder.addProperties(prop);
 		System.out.println("---Factory Builder Object Created---");
-				
-		System.out.println("Session Factory Object Creation");
+
+		sessionBuilder.addAnnotatedClass(UserRegister.class);
+		System.out.println("Session Factory Object Creation for User");
+		
 		SessionFactory sessionFactory=sessionBuilder.buildSessionFactory();
 		System.out.println("Session Factory Object Created");
 		return sessionFactory;
 	}
-
+	
 	@Autowired
-	@Bean(name = "transactionManager")
-	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
+	@Bean(name="transactionManager")
+	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory)
+	{
 		System.out.println("--Transaction manager Object Creation--");
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+		HibernateTransactionManager transactionManager=new HibernateTransactionManager(sessionFactory);
 		System.out.println("--Transaction manager Object Created--");
 		return transactionManager;
 	}
+
+	@Autowired
+	@Bean(name="userDAO")
+	public UserDAO getUserDAO(SessionFactory sessionFactory)
+	{
+		System.out.println("-- UserDAO Object Creation--");
+		return new UserDAO(sessionFactory);
+	}
+
 
 	
 

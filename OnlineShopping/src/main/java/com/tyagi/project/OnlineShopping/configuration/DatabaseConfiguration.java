@@ -12,7 +12,9 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.tyagi.project.OnlineShopping.dao.CategoryDAO;
 import com.tyagi.project.OnlineShopping.dao.UserDAO;
+import com.tyagi.project.OnlineShopping.model.Category;
 import com.tyagi.project.OnlineShopping.model.UserRegister;
 
 @Configuration
@@ -49,10 +51,12 @@ public class DatabaseConfiguration {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(getH2DataSource());
 		sessionBuilder.addProperties(prop);
 		System.out.println("---Factory Builder Object Created---");
-
+		sessionBuilder.addAnnotatedClass(Category.class);
+		System.out.println("Session Factory Object Creation for Category");
+	
 		sessionBuilder.addAnnotatedClass(UserRegister.class);
 		System.out.println("Session Factory Object Creation for User");
-		
+
 		SessionFactory sessionFactory=sessionBuilder.buildSessionFactory();
 		System.out.println("Session Factory Object Created");
 		return sessionFactory;
@@ -67,6 +71,13 @@ public class DatabaseConfiguration {
 		System.out.println("--Transaction manager Object Created--");
 		return transactionManager;
 	}
+	@Autowired
+	@Bean(name="categoryDAO")
+	public CategoryDAO getCategoryDAO(SessionFactory sessionFactory)
+	{
+		System.out.println("-- CategoryDAO Object Creation--");
+		return new CategoryDAO(sessionFactory);
+	}
 
 	@Autowired
 	@Bean(name="userDAO")
@@ -75,8 +86,5 @@ public class DatabaseConfiguration {
 		System.out.println("-- UserDAO Object Creation--");
 		return new UserDAO(sessionFactory);
 	}
-
-
 	
-
 }

@@ -11,7 +11,7 @@ public class UserTestCase
 {
 public static void main(String[] args) {
 	AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext();
-	context.scan("com.tyagi.EcommerceBackend");
+	context.scan("com.tyagi.project.OnlineShopping");
 	context.refresh();
 
 UserDAO userDAO=(UserDAO)context.getBean("userDAO");

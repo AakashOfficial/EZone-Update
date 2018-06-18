@@ -12,10 +12,12 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.tyagi.project.OnlineShopping.dao.CartDAO;
 import com.tyagi.project.OnlineShopping.dao.CategoryDAO;
 import com.tyagi.project.OnlineShopping.dao.ProductDAO;
 import com.tyagi.project.OnlineShopping.dao.SupplierDAO;
 import com.tyagi.project.OnlineShopping.dao.UserDAO;
+import com.tyagi.project.OnlineShopping.model.Cart;
 import com.tyagi.project.OnlineShopping.model.Category;
 import com.tyagi.project.OnlineShopping.model.Product;
 import com.tyagi.project.OnlineShopping.model.Supplier;
@@ -51,6 +53,7 @@ public class DatabaseConfiguration {
 		System.out.println("---Local SessionFactory Builder Object Creation---");
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(getH2DataSource());
 		sessionBuilder.addProperties(prop);
+
 		System.out.println("---Factory Builder Object Created---");
 		sessionBuilder.addAnnotatedClass(Category.class);
 		System.out.println("Session Factory Object Creation for Category");
@@ -60,7 +63,8 @@ public class DatabaseConfiguration {
 		System.out.println("Session Factory Object Creation for Supplier");
 		sessionBuilder.addAnnotatedClass(UserRegister.class);
 		System.out.println("Session Factory Object Creation for User");
-
+		sessionBuilder.addAnnotatedClass(Cart.class);
+		System.out.println("Session Factory Object Creation for Cart");
 		SessionFactory sessionFactory = sessionBuilder.buildSessionFactory();
 		System.out.println("Session Factory Object Created");
 		return sessionFactory;
@@ -101,6 +105,13 @@ public class DatabaseConfiguration {
 	public UserDAO getUserDAO(SessionFactory sessionFactory) {
 		System.out.println("-- UserDAO Object Creation--");
 		return new UserDAO(sessionFactory);
+	}
+
+	@Autowired
+	@Bean(name = "cartDAO")
+	public CartDAO getCartDAO(SessionFactory sessionFactory) {
+		System.out.println("-- CartDAO Object Creation--");
+		return new CartDAO(sessionFactory);
 	}
 
 }

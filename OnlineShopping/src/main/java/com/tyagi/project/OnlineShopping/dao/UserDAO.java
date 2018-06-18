@@ -11,42 +11,38 @@ import org.springframework.stereotype.Repository;
 import com.tyagi.project.OnlineShopping.model.UserRegister;
 
 @Repository("UserDAO")
-public class UserDAO 
-{
-@Autowired
-SessionFactory sessionFactory;
-public UserDAO(SessionFactory sessionFactory)
-{
-	this.sessionFactory=sessionFactory;
-}
-@Transactional
-public void insertUpdateUser(UserRegister user)
-{
-	Session session=sessionFactory.getCurrentSession();
-	session.saveOrUpdate(user);
-}
+public class UserDAO {
+	@Autowired
+	SessionFactory sessionFactory;
 
-public UserRegister getUser(int userid)
-{
-	Session session=sessionFactory.openSession();
-	UserRegister user=(UserRegister)session.get(UserRegister.class,userid);
-	session.close();
-	return user;
-}
-@Transactional
-public void deleteUser(UserRegister user)
-{
-	sessionFactory.getCurrentSession().delete(user);
-}
+	public UserDAO(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
-public List<UserRegister> getUserDetails()
-{
-	Session session=sessionFactory.openSession();
-	Query query=session.createQuery("from UserRegister");
-	List<UserRegister> list=query.list();
-	session.close();
-	return list;
-}
+	@Transactional
+	public void insertUpdateUser(UserRegister user) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(user);
+	}
 
+	public UserRegister getUser(int userid) {
+		Session session = sessionFactory.openSession();
+		UserRegister user = (UserRegister) session.get(UserRegister.class, userid);
+		session.close();
+		return user;
+	}
+
+	@Transactional
+	public void deleteUser(UserRegister user) {
+		sessionFactory.getCurrentSession().delete(user);
+	}
+
+	public List<UserRegister> getUserDetails() {
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from UserRegister");
+		List<UserRegister> list = query.list();
+		session.close();
+		return list;
+	}
 
 }

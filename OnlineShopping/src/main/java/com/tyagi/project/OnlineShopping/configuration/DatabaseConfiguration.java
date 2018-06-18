@@ -25,7 +25,7 @@ public class DatabaseConfiguration {
 		dataSource.setDriverClassName("org.h2.Driver");
 		dataSource.setUrl("jdbc:h2:~/OnlineShopping");
 		dataSource.setUsername("sa");
-		dataSource.setPassword("@aakash");
+		dataSource.setPassword("test");
 		System.out.println("Data Source Creation");
 		return dataSource;
 	}

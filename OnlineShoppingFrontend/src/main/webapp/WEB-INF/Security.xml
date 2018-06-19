@@ -17,7 +17,6 @@
         http://www.springframework.org/schema/tx 
         http://www.springframework.org/schema/security/spring-tx-4.2.xsd">
 
-
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/UserHome"
 			access="hasRole('Role_USER')" />
@@ -31,7 +30,6 @@
 		<security:logout logout-url="/perform_logout"
 			invalidate-session="true" logout-success-url="/" />
 		<security:csrf disabled="true" />
-
 	</security:http>
 
 	<security:authentication-manager>

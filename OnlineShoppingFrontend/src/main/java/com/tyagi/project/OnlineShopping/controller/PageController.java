@@ -31,4 +31,9 @@ public class PageController {
 		return "Home";
 	}
 
+	@RequestMapping("/Header")
+	public String showhead() {
+		return "Header";
+	}
+
 }

@@ -1,7 +1,5 @@
 <html>
 <body>
-<%@include file="WEB-INF\views\Home.jsp" %>
-
-hi deve
+	<%@include file="WEB-INF\views\Home.jsp"%>
 </body>
 </html>

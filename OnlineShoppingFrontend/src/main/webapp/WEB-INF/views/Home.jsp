@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>EZONE Home</title>
+<title>Online Shopping</title>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +18,7 @@
 
 
 Home Page !
-	
+	<a href="views/Login.jsp">Login</a>
 
 </body>
 </html>

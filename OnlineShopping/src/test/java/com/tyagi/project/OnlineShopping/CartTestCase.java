@@ -10,7 +10,7 @@ import com.tyagi.project.OnlineShopping.model.Cart;
 public class CartTestCase {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-		context.scan("com.tyagi.EcommerceBackend");
+		context.scan("com.tyagi.project.OnlineShopping");
 		context.refresh();
 		CartDAO cartDAO = (CartDAO) context.getBean("cartDAO");
 		Cart cart = new Cart();

@@ -24,24 +24,22 @@ import com.tyagi.project.OnlineShopping.model.Supplier;
 import com.tyagi.project.OnlineShopping.model.UserRegister;
 
 @Configuration
-@ComponentScan("com.tyagi.OnlineShopping") //Base Package Scan
+@ComponentScan("com.tyagi.OnlineShopping")
 @EnableTransactionManagement
 public class DatabaseConfiguration {
 
-	//Data Source (Backend Configuration)
 	@Bean(name = "dataSource")
 	public DataSource getH2DataSource() {
 		System.out.println("Starting of the method getH2DataSource");
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.h2.Driver");
-		dataSource.setUrl("jdbc:h2:~/OnlineShopping");
+		dataSource.setUrl("jdbc:h2:tcp://localhost/~/OnlineShoppings");
 		dataSource.setUsername("sa");
 		dataSource.setPassword("test");
 		System.out.println("Data Source Creation");
 		return dataSource;
 	}
 
-	// Session Factory Object Creation(Hibernate Mapping)
 	@Autowired
 	@Bean(name = "sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
@@ -52,39 +50,31 @@ public class DatabaseConfiguration {
 		prop.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 		System.out.println("---Hibernate Properties Created");
 
-		//Local Session Factory Builder Object Creation
 		System.out.println("---Local SessionFactory Builder Object Creation---");
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(getH2DataSource());
 		sessionBuilder.addProperties(prop);
 		System.out.println("---Factory Builder Object Created---");
 
-		// Session Factory Object For Category
 		sessionBuilder.addAnnotatedClass(Category.class);
 		System.out.println("Session Factory Object Creation for Category");
 
-		// Session Factory Object For Product
 		sessionBuilder.addAnnotatedClass(Product.class);
 		System.out.println("Session Factory Object Creation for Product");
 
-		// Session Factory Object For Supplier
 		sessionBuilder.addAnnotatedClass(Supplier.class);
 		System.out.println("Session Factory Object Creation for Supplier");
 
-		// Session Factory Object For User
 		sessionBuilder.addAnnotatedClass(UserRegister.class);
 		System.out.println("Session Factory Object Creation for User");
 
-		// Session Factory Object For Cart
 		sessionBuilder.addAnnotatedClass(Cart.class);
 		System.out.println("Session Factory Object Creation for Cart");
-		
-		//SessionFactory Object Created
+
 		SessionFactory sessionFactory = sessionBuilder.buildSessionFactory();
 		System.out.println("Session Factory Object Created");
 		return sessionFactory;
 	}
 
-	// Transaction Manager Object
 	@Autowired
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
@@ -94,7 +84,6 @@ public class DatabaseConfiguration {
 		return transactionManager;
 	}
 
-	// categoryDAO Object
 	@Autowired
 	@Bean(name = "categoryDAO")
 	public CategoryDAO getCategoryDAO(SessionFactory sessionFactory) {
@@ -102,7 +91,6 @@ public class DatabaseConfiguration {
 		return new CategoryDAO(sessionFactory);
 	}
 
-	// productDAO Object
 	@Autowired
 	@Bean(name = "productDAO")
 	public ProductDAO getProductDAO(SessionFactory sessionFactory) {
@@ -110,7 +98,6 @@ public class DatabaseConfiguration {
 		return new ProductDAO(sessionFactory);
 	}
 
-	// supplierDAO Object
 	@Autowired
 	@Bean(name = "supplierDAO")
 	public SupplierDAO getSupplierDAO(SessionFactory sessionFactory) {
@@ -118,7 +105,6 @@ public class DatabaseConfiguration {
 		return new SupplierDAO(sessionFactory);
 	}
 
-	// userDAO Object
 	@Autowired
 	@Bean(name = "userDAO")
 	public UserDAO getUserDAO(SessionFactory sessionFactory) {
@@ -126,7 +112,6 @@ public class DatabaseConfiguration {
 		return new UserDAO(sessionFactory);
 	}
 
-	// cartDAO Object
 	@Autowired
 	@Bean(name = "cartDAO")
 	public CartDAO getCartDAO(SessionFactory sessionFactory) {

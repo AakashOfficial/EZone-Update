@@ -21,8 +21,8 @@ public class CategoryTestCase {
 
 		Category category = new Category();
 
-		category.setCatname("Saree");
-		category.setCatdesc("Wear and be Gorgeous");
+		category.setCatname("Shirt");
+		category.setCatdesc("Nice Look");
 
 		categoryDAO.insertUpdateCategory(category);
 		System.out.println("Category Inserted");

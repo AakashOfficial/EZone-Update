@@ -15,6 +15,5 @@
   <a href="checkout">Confirm Your Order</a><br/><hr/>
   <a href="Cart">Your Cart</a>
   
-
 </body>
 </html>

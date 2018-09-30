@@ -105,7 +105,7 @@
 
     <div class="footer-bottom">
         <div class="container">
-            <p class="pull-left"> Copyright © 2017, Tyagi Inc. All rights reserved.</p>
+            <p class="pull-left"> Copyright Â© 2017, Tyagi Inc. All rights reserved.</p>
             <div class="pull-right">
                 <ul class="nav nav-pills payments">
                     <li><i class="fa fa-cc-visa"></i></li>

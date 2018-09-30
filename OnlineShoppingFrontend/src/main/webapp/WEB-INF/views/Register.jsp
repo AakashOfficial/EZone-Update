@@ -244,5 +244,3 @@ span.input-group-addon i {
     <%@include file="Footer.jsp" %>
 	</body>
 </html>
-
-

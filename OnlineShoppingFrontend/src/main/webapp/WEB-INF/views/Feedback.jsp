@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
    <link href="pricing_table_hover_effect.css" rel="stylesheet">
-        
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>

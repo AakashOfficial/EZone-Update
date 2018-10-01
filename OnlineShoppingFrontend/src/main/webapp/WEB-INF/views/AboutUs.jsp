@@ -37,7 +37,7 @@ font-size: 24px;
     <div class="row">
         <div class="col-md-4">
             <form style="text-align:center;padding-left:160px">
-            <legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
+            <legend><span class="glyphicon glyphicon-globe"></span>Â Our office</legend>
             <address>
                 <strong>Tyagi, Inc.</strong><br>
                 795 Anand Vihar, District - Hapur<br>
@@ -60,3 +60,4 @@ font-size: 24px;
 <%@include file="Footer.jsp" %>
 </body>
 </html>
+
